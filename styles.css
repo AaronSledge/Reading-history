@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color:bisque;
+    overflow: hidden;
+}
+
+.nav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background-color: grey;
+    color: white;
+}
+
+.nav a.active{
+    background-color: blue;
+    color: white;
+}
+
+.nav .search {
+    float: right;
+}
+
+.nav .search button {
+    cursor: pointer;
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    border: none;
+}
+
+.nav input[type = text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.nav .sarch button:hover {
+    background: #ccc
+}
+
+
