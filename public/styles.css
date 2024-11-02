@@ -27,11 +27,11 @@
     color: white;
 }
 
-.nav .search {
+.nav .search-bar {
     float: right;
 }
 
-.nav .search button {
+.nav .search-bar button {
     cursor: pointer;
     float: right;
     padding: 6px 10px;
@@ -47,7 +47,7 @@
     border: none;
 }
 
-.nav .sarch button:hover {
+.nav .search-bar button:hover {
     background: #ccc
 }
 

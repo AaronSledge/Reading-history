@@ -11,14 +11,15 @@
         <div class="nav">
             <a class="active" href="#home">Home</a>
             <a href="#history">reading-history</a>
-            <div class="search">
-                <input type="text" placeholder="Search..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+            <div class="search-bar">
+                <input type="text" id="search"  placeholder="Search..." name="search">
+                <button type="submit" onclick="findBook()"><i class="fa fa-search"></i></button>
             </div>
         </div>
         
         <h1>Welcome Aaron</h1>
 
+        <div class="results"></div>
         <script src="script.js"></script>
     </body>
 </html>
