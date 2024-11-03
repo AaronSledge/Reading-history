@@ -14,3 +14,7 @@ async function findBook() {
         console.error("Error fetching book data:", error);
     }
 }
+
+window.onload = async function loadTopBooks() {
+    
+}
