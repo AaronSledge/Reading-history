@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>results</title>
+        <meta charset="UTF-8">
+        <meta name="viewport", content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet", href="styles.css">
+    </head>
+    <body>
+        <div class="nav">
+            <a class="active" href="#home">Home</a>
+            <a href="#history">reading-history</a>
+            <div class="search-bar">
+                <input type="text" id="search"  placeholder="Search..." name="search">
+                <button type="submit" onclick="findBook()"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+
+        <main class="container">
+            <div class="BookPage">
+                <div class="BookPage_left">
+                    <div class="BookCover"></div>
+                    <div class="actions"></div>
+                </div>
+                <div class="BookPage_right">
+                    <div class="description"></div>
+                </div>
+            </div>
+        </main>
+        <script src="book.js"></script>
+    </body>
+</html>

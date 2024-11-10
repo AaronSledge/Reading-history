@@ -28,7 +28,7 @@ window.onload = async function loadTopBooks() {
                 const book = books[index];
 
                 const link = document.createElement('a');
-                link.href = `/results.html?bookKey=${encodeURIComponent(book.key)}`;
+                link.href = `/results.html?bookKey=${encodeURIComponent(book.key)}name=${encodeURIComponent(book.title)}`;
                 link.target = "_self";
 
                 const image = document.createElement("img");
