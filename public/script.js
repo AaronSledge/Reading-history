@@ -26,17 +26,18 @@ window.onload = async function loadTopBooks() {
         Array.from(items).forEach((element, index) => {
             if(index < books.length) {
                 const book = books[index];
-
-                const link = document.createElement('a');
-                link.href = `/results.html?bookKey=${encodeURIComponent(book.key)}name=${encodeURIComponent(book.title)}`;
-                link.target = "_self";
-
                 const image = document.createElement("img");
                 image.src = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
                 image.alt = book.title;
 
+                const link = document.createElement('a');
+                link.href = `/results.html?bookKey=${encodeURIComponent(book.key)}&name=${encodeURIComponent(book.title)}&image=${encodeURIComponent(image.src)}`;
+                link.target = "_self";
+
+                
                 link.appendChild(image);
                 element.appendChild(link);
+
             }
             
         });
