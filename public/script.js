@@ -18,23 +18,26 @@ async function findBook() {
 window.onload = async function loadTopBooks() {
     const items = document.querySelectorAll(".col");
     try {
-        const response = await fetch("/api/search?q=stephen+king");
+        const response = await fetch("/api/search?q=subject:fiction&maxResults=16");
         const data = await response.json();
         
-        const books = data.docs;
+        const books = data.items;
+
+        console.log(books);
 
         Array.from(items).forEach((element, index) => {
             if(index < books.length) {
                 const book = books[index];
                 const image = document.createElement("img");
-                image.src = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
-                image.alt = book.title;
+                image.src = book.volumeInfo.imageLinks.thumbnail;
+                image.alt = book.volumeInfo.title;
+                
 
                 const link = document.createElement('a');
-                link.href = `/results.html?bookKey=${encodeURIComponent(book.key)}&name=${encodeURIComponent(book.title)}&image=${encodeURIComponent(image.src)}`;
+                link.href = `/results.html?name=${encodeURIComponent(book.volumeInfo.title)}&ID=${encodeURIComponent(book.id)}&image=${encodeURIComponent(image.src)}`;
                 link.target = "_self";
 
-                
+
                 link.appendChild(image);
                 element.appendChild(link);
 

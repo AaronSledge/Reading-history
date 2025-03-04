@@ -1,9 +1,9 @@
 window.onload = async function displayBookInfo() {
     const searchParams = new URLSearchParams(window.location.search);
-    const bookKey = searchParams.get("bookKey");
+    const ID = searchParams.get("ID");
     const imagesrc = searchParams.get("image");
 
-    if(!bookKey) {
+    if(!ID) {
         return;
     }
 
@@ -11,20 +11,17 @@ window.onload = async function displayBookInfo() {
         const description = document.getElementsByClassName("description")[0];
         const cover = document.getElementsByClassName("BookCover")[0];
 
-        let updatedBookKey = bookKey.split("name");
-
-        const response = await fetch(`/api/display?q=${encodeURIComponent(updatedBookKey[0])}`);
+        const response = await fetch(`/api/display?q=${encodeURIComponent(ID)}`);
 
         const data = await response.json();
 
-        console.log(`https://openlibrary.org${updatedBookKey[0]}.json`)
-        console.log(data.description);
+        console.log(data);
 
         const newImage = document.createElement("img");
         newImage.src = decodeURIComponent(imagesrc);
 
         cover.appendChild(newImage);
-        description.textContent = data.description;
+        description.innerHTML = data.volumeInfo.description;
 
     } catch (error){
         console.error("Error fetching book data:", error);

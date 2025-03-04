@@ -6,14 +6,17 @@ app.use(express.static("public"));
 
 app.get('/api/search', async (req, res) => {
     const query = req.query.q;
+    const results = req.query.maxResults;
     if(!query) {
         return res.status(400).json({error: "Search query is required "});
     }
 
     try  {
-        const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`)
+        
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${results}`);
 
         const data = await response.json();
+
 
         res.json(data);
     } 
@@ -27,7 +30,7 @@ app.get('/api/display', async (req, res) => {
     const query = req.query.q;
 
     try {
-        const response = await fetch(`https://openlibrary.org${query}.json`);
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${query}`);
 
         const data = await response.json();
 
