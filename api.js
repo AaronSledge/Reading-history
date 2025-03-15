@@ -21,8 +21,8 @@ app.get('/api/search', async (req, res) => {
         res.json(data);
     } 
     catch (error) {
-        console.error("Error fetching data from OpenLibrary:", error.message);
-        res.status(500).json({error: "An error occured while fetching data from OpenLibrary"});
+        console.error("Error fetching data from GoogleAPI:", error.message);
+        res.status(500).json({error: "An error occured while fetching data from GooleAPI"});
     }
 });
 
@@ -37,7 +37,7 @@ app.get('/api/display', async (req, res) => {
         res.json(data);
     } catch (error) {
         console.error("Error fetching book data from specfic page:", error.message);
-        res.status(500).json({error: "An error occured while fetching data from OpenLibrary"});
+        res.status(500).json({error: "An error occured while fetching data from GoogleAPI"});
     }
 });
 

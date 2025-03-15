@@ -1,5 +1,6 @@
 async function findBook() {
     const query = document.getElementById("search").value;
+    
     if (!query) {
         return;
     }
@@ -7,8 +8,7 @@ async function findBook() {
     try {
         const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
         const data = await response.json();
-
-        console.log(data.docs.map(book => book.title));
+        window.location.replace("search.html");
     }
     catch (error) {
         console.error("Error fetching book data:", error);
