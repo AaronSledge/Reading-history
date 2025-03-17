@@ -52,6 +52,10 @@
     background: #ccc
 }
 
+.card-header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .container-results {
     display: flex;
     justify-content: center;

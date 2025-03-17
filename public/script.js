@@ -1,4 +1,4 @@
-async function findBook() {
+export async function findBook() {
     const query = document.getElementById("search").value;
     
     if (!query) {
@@ -49,3 +49,4 @@ window.onload = async function loadTopBooks() {
         console.error("Error fetching book data:", error);
     }
 }
+window.findBook = findBook;

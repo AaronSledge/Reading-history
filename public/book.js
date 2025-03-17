@@ -1,3 +1,5 @@
+import {findBook} from "./script.js"
+
 window.onload = async function displayBookInfo() {
     const searchParams = new URLSearchParams(window.location.search);
     const ID = searchParams.get("ID");
