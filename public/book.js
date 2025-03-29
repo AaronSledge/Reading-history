@@ -10,6 +10,7 @@ window.onload = async function displayBookInfo() {
     }
 
     try {
+        //get all the classes needed to attach data to.
         const description = document.getElementsByClassName("description")[0];
         const cover = document.getElementsByClassName("BookCover")[0];
         const title = document.getElementsByClassName("title")[0];
@@ -17,16 +18,16 @@ window.onload = async function displayBookInfo() {
         const pageCount = document.getElementsByClassName("page-count")[0];
         const date = document.getElementsByClassName("date")[0];
 
-        const response = await fetch(`/api/display?q=${encodeURIComponent(ID)}`);
+        const response = await fetch(`/api/display?q=${encodeURIComponent(ID)}`); //get data from our api file
 
         const data = await response.json();
 
-        console.log(data);
 
         const newImage = document.createElement("img");
         newImage.src = decodeURIComponent(imagesrc);
 
-        cover.appendChild(newImage);
+        //append book information
+        cover.appendChild(newImage);  
 
         title.textContent = data.volumeInfo.title;
         

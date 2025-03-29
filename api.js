@@ -5,8 +5,8 @@ const PORT = 3000;
 app.use(express.static("public"));
 
 app.get('/api/search', async (req, res) => {
-    const query = req.query.q;
-    const results = req.query.maxResults;
+    const query = req.query.q; //get our query for anything q =
+    const results = req.query.maxResults; //if there is a maxresults tag, get the max
     if(!query) {
         return res.status(400).json({error: "Search query is required "});
     }
