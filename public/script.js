@@ -1,7 +1,7 @@
 export async function findBook() {
     const query = document.getElementById("search").value;
 
-    window.location.href = `search.html?=name${query}`;
+    window.location.href = `search.html?name=${query}`;
 }
 
 window.onload = async function loadTopBooks() {
