@@ -31,18 +31,19 @@ window.onload = async function showNumResults() {
 
 async function loadResults(data, query) {
     const searchBar = document.getElementById("search");
-    searchBar.value = query;
+    searchBar.value = query; //want what the user types to be present in the search bar
     const books = data.items;
     const table = document.getElementById("table"); //get the table element
 
     books.forEach((book) => {
-        const name = document.createElement("p");
+        const name = document.createElement("span");
+        name.classList.add("resultsTitle");
         name.textContent = book.volumeInfo.title; //get the title from book at specfic index
 
         const image = document.createElement("img");
 
-        if(Object.hasOwn(book.volumeInfo, "imageLinks")) {
-            image.src = book.volumeInfo.imageLinks.thumbnail; //get the book cover
+        if(Object.hasOwn(book.volumeInfo, "imageLinks")) { //some books don't provide a book cover, so this is error checking
+            image.src = book.volumeInfo.imageLinks.thumbnail; 
         }
         else {
             image.src = "image/placeholder.png";
@@ -51,11 +52,16 @@ async function loadResults(data, query) {
         image.alt = name.textContent;  //if image doesn't load   
 
         const imageLink = document.createElement("a");
-        const titleLink = document.createElement("a");
+        const titleLink = document.createElement("a"); //want to link to results page from both image and title
         imageLink.href = `/results.html?name=${encodeURIComponent(book.volumeInfo.title)}&ID=${encodeURIComponent(book.id)}&image=${encodeURIComponent(image.src)}`;
         titleLink.href = `/results.html?name=${encodeURIComponent(book.volumeInfo.title)}&ID=${encodeURIComponent(book.id)}&image=${encodeURIComponent(image.src)}`;
         imageLink.target = "_self";
         titleLink.target = "_self";
+
+
+        const author = document.createElement("span");
+        author.textContent = `By ${book.volumeInfo.authors[0]}`;
+
 
         const row = document.createElement("tr");
         const imageInfo = document.createElement("td");
@@ -66,10 +72,16 @@ async function loadResults(data, query) {
 
         titleLink.appendChild(name);
         titleInfo.appendChild(titleLink);
+        titleInfo.appendChild(document.createElement("br"));
+        titleInfo.appendChild(author);
 
         row.appendChild(imageInfo);
         row.appendChild(titleInfo);
+
+        const horizontalRule = document.createElement("hr"); //add line between each row
+        horizontalRule.classList.add("seperator");
         table.appendChild(row);
+        table.appendChild(horizontalRule);
     });
     
 }
