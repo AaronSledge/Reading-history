@@ -1,13 +1,13 @@
 export async function findBook() {
     const query = document.getElementById("search").value;
 
-    window.location.href = `search.html?name=${query}`;
+    window.location.href = `search.html?name=${query}&page=1`;
 }
 
 window.onload = async function loadTopBooks() {
     const items = document.querySelectorAll(".col");
     try {
-        const response = await fetch("/api/search?q=subject:fiction&maxResults=16");
+        const response = await fetch("/api/search?q=subject:fiction&maxResults=16&startIndex=0");
         const data = await response.json();
         
         const books = data.items; //gets list of books

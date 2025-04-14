@@ -7,13 +7,14 @@ app.use(express.static("public"));
 app.get('/api/search', async (req, res) => {
     const query = req.query.q; //get our query for anything q =
     const results = req.query.maxResults; //if there is a maxresults tag, get the max
+    const start = req.query.startIndex;
     if(!query) {
         return res.status(400).json({error: "Search query is required "});
     }
 
     try  {
         
-        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${results}`);
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${results}&startIndex=${start}`);
 
         const data = await response.json();
 
