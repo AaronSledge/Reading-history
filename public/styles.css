@@ -119,6 +119,11 @@ a:hover, a:visited, a:link, a:active {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.tabs {
+    margin: 5px;
+    color: black;
+}
+
 
 
 

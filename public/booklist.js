@@ -1,6 +1,6 @@
 import {findBook} from "./script.js";
 
-window.onload = async function getData() {
+window.onload = async function showNumResults() {
     const searchParams = new URLSearchParams(window.location.search);
     const query = searchParams.get("name"); //get the name inputted from URL
     let currentPage = searchParams.get("page"); //get current page number
@@ -26,59 +26,17 @@ window.onload = async function getData() {
 
         let numPages = 0;
         if(numResults > 2000) { //limit results to only 2000
-            text.textContent = "Page 1 of about 2000 results";
+            text.textContent = `Page ${currentPageNum} of about 2000 results`;
             numPages = 2000 / 20;
         }
         else {
-            text.textContent = `Page 1 of about ${numResults} results`
+            text.textContent = `Page ${currentPageNum} of about ${numResults} results`
             numPages = numResults / 20;
         }
 
         resultInfo.appendChild(text);
         loadResults(data, query);
-
-        if(numResults > 20) { //if they are not more than 20 results no need for next tag;
-            const pages = document.getElementsByClassName("pages")[0];
-            const previous = document.createElement("span");
-
-            const firstPage = document.createElement("a");
-            const secondPage = document.createElement("a");
-            const thirdPage = document.createElement("a");
-            previous.textContent = "Previous";
-
-            if(currentPageNum == 1) {
-                firstPage.href = `search.html?name=${query}&page=${currentPageNum.toString()}`;
-                firstPage.textContent = currentPageNum;
-                secondPage.href = `search.html?name=${query}&page=${(currentPageNum + 1).toString()}`;
-                secondPage.textContent = currentPageNum + 1;
-                thirdPage.href = `search.html?name=${query}&page=${(currentPageNum + 2).toString()}`;
-                thirdPage.textContent = currentPageNum + 2;
-
-            }
-            else if(currentPageNum == numPages) {
-                firstPage.href = `search.html?name=${query}&page=${(currentPageNum - 2).toString()}`;
-                firstPage.textContent = currentPageNum - 2;
-                secondPage.href = `search.html?name=${query}&page=${(currentPageNum - 1).toString()}`;
-                secondPage.textContent = currentPageNum - 1;
-                thirdPage.href = `search.html?name=${query}&page=${currentPageNum.toString()}`;
-                thirdPage.textContent = currentPageNum;
-
-            }
-            else {
-                firstPage.href = `search.html?name=${query}&page=${(currentPageNum - 1).toString()}`;
-                firstPage.textContent = currentPageNum - 1;
-                secondPage.href = `search.html?name=${query}&page=${currentPageNum.toString()}`;
-                secondPage.textContent = currentPageNum;
-                thirdPage.href = `search.html?name=${query}&page=${(currentPageNum + 1).toString()}`;
-                thirdPage.textContent = currentPageNum + 1;
-
-            }
-            pages.appendChild(previous);
-            pages.appendChild(firstPage);
-            pages.appendChild(secondPage);
-            pages.appendChild(thirdPage);
-
-        }
+        pageTabs(currentPageNum, numResults, query, numPages);
 
 
     } catch(error) {
@@ -148,4 +106,64 @@ async function loadResults(data, query) {
         table.appendChild(horizontalRule);
     });
     
+}
+
+async function pageTabs(currentPageNum, numResults, query, numPages) {
+    if(numResults > 20) { //if they are not more than 20 results no need for next tag;
+        const pages = document.getElementsByClassName("pages")[0];
+        const first = document.createElement("a");
+        const last = document.createElement("a");
+
+        const firstPage = document.createElement("a");
+        const secondPage = document.createElement("a");
+        const thirdPage = document.createElement("a");
+
+        first.textContent = "first";
+        first.href = `search.html?name=${query}&page=1`;
+        last.textContent = "last";
+        last.href = `search.html?name=${query}&page=${numPages}`;
+
+        first.classList.add("tabs");
+        firstPage.classList.add("tabs");
+        secondPage.classList.add("tabs");
+        thirdPage.classList.add("tabs");
+        last.classList.add("tabs");
+
+        if(currentPageNum == 1) {
+            firstPage.href = `search.html?name=${query}&page=${currentPageNum.toString()}`;
+            firstPage.style.color = "blue";
+            firstPage.textContent = currentPageNum;
+            secondPage.href = `search.html?name=${query}&page=${(currentPageNum + 1).toString()}`;
+            secondPage.textContent = currentPageNum + 1;
+            thirdPage.href = `search.html?name=${query}&page=${(currentPageNum + 2).toString()}`;
+            thirdPage.textContent = currentPageNum + 2;
+
+        }
+        else if(currentPageNum == numPages) {
+            firstPage.href = `search.html?name=${query}&page=${(currentPageNum - 2).toString()}`;
+            firstPage.textContent = currentPageNum - 2;
+            secondPage.href = `search.html?name=${query}&page=${(currentPageNum - 1).toString()}`;
+            secondPage.textContent = currentPageNum - 1;
+            thirdPage.href = `search.html?name=${query}&page=${currentPageNum.toString()}`;
+            thirdPage.style.color = "blue";
+            thirdPage.textContent = currentPageNum;
+
+        }
+        else {
+            firstPage.href = `search.html?name=${query}&page=${(currentPageNum - 1).toString()}`;
+            firstPage.textContent = currentPageNum - 1;
+            secondPage.href = `search.html?name=${query}&page=${currentPageNum.toString()}`;
+            secondPage.style.color = "blue";
+            secondPage.textContent = currentPageNum;
+            thirdPage.href = `search.html?name=${query}&page=${(currentPageNum + 1).toString()}`;
+            thirdPage.textContent = currentPageNum + 1;
+
+        }
+        pages.appendChild(first);
+        pages.appendChild(firstPage);
+        pages.appendChild(secondPage);
+        pages.appendChild(thirdPage);
+        pages.appendChild(last);
+
+    }
 }
