@@ -124,6 +124,58 @@ a:hover, a:visited, a:link, a:active {
     color: black;
 }
 
+.sigin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; 
+    padding: 20px;
+}
+
+.signin-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.signin-form h3 {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.signin-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .signin-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .signin-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+
+
 
 
 
